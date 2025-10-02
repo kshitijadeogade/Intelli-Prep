@@ -1,0 +1,36 @@
+/* Welcome Section Styles */
+.welcome-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.welcome-text {
+  font-size: 1.2rem;
+  color: #4a5568;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Logout Button Styles */
+.logout-btn {
+  background: #e0e7ff !important;
+  border: none !important;
+  color: #3b4cca !important;
+  text-align: center !important;
+  cursor: pointer !important;
+  padding: 0.7rem 0.5rem !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  width: 90px !important;
+  margin-bottom: 1.2rem !important;
+  border-radius: 24px !important;
+  box-shadow: 0 2px 8px rgba(80, 112, 255, 0.08) !important;
+  transition: background 0.2s, color 0.2s !important;
+}
+
+.logout-btn:hover {
+  background: #dc2626 !important;
+  color: #fff !important;
+}

@@ -1,22 +1,61 @@
 
 import './App.css';
+import './AuthStyles.css';
 import { Link } from 'react-router-dom';
+import { useAuth } from './contexts/AuthContext';
 
 function App() {
+  const { isAuthenticated, user, logout } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+  };
+
   return (
     <div className="landing-bg">
       <div className="navbar-vertical">
         <Link to="/" className="nav-btn">Home</Link>
-        <Link to="/profile" className="nav-btn">Profile</Link>
-        <Link to="/practice" className="nav-btn">Practice</Link>
-  <Link to="/hardware-score" className="nav-btn">Score</Link>
+        {isAuthenticated ? (
+          <>
+            <Link to="/profile" className="nav-btn">Profile</Link>
+            <Link to="/practice" className="nav-btn">Practice</Link>
+            <Link to="/hardware-score" className="nav-btn">Score</Link>
+            <button 
+              onClick={handleLogout} 
+              className="nav-btn logout-btn"
+              style={{ 
+                background: 'transparent', 
+                border: 'none', 
+                color: 'inherit',
+                textAlign: 'left',
+                cursor: 'pointer',
+                padding: '0.75rem 1rem',
+                fontSize: 'inherit'
+              }}
+            >
+              Logout
+            </button>
+          </>
+        ) : (
+          <>
+            <Link to="/login" className="nav-btn">Login</Link>
+            <Link to="/signup" className="nav-btn">Sign Up</Link>
+          </>
+        )}
       </div>
       <div className="main-content">
         <div className="hero-section">
           <div className="hero-content">
             <h1 className="hero-title">Intelliprep</h1>
             <p className="hero-subtitle">AI & IoT Powered Mock Interview Platform</p>
-            <button className="cta-btn">Try Demo</button>
+            {isAuthenticated ? (
+              <div className="welcome-section">
+                <p className="welcome-text">Welcome back, {user?.firstName || 'User'}!</p>
+                <Link to="/practice" className="cta-btn">Start Practice</Link>
+              </div>
+            ) : (
+              <Link to="/signup" className="cta-btn">Try Demo</Link>
+            )}
           </div>
           <div className="hero-image">
             {/* Interview-themed image. Replace with your own asset if available. */}
